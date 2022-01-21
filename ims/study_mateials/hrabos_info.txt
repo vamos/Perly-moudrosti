@@ -1,0 +1,180 @@
+- hrabos polni: Microtus Alvaris
+
+Savci ceske republiky: Milos Andera | Jiri Gaisler
+===================================================
+	- zije na 98% mist v cr
+
+	- hustota osidleni:	[ex./ha]
+
+		bezne:	 	200-700
+		rekordne:	2000-3000
+		minimum:	2-5
+
+	- okrsky ve kterych se pohybuji: [m^2]
+
+		samci:	1200 - 1500 
+		samice:	300 - 400
+
+	- pri premnozeni se objevuje kanibalismus
+
+	- rozmnozovani:
+		- po 19-21 dnech brezosti samice porodi 4-7
+		  (1 - 12) mladat na vrh
+		- mladata po 3-4 tydnech jsou dospola a schopna
+		  zapojit se do rozmnozovani
+		- jedna samice az 40 potomku za zivot
+		
+	- prumerne stari populace nekolik mesicu
+	  (nejdelsi vek v prirode asi rok a pul)
+
+	- TODO chittyho effekt
+
+Nasi savci: Jaroslav Pelikan | Jiri Gaisler | Pavel Rodl
+========================================================
+	- rozmnozovani: 
+		- unor az listopad; pri teplem pocasi celorocne
+		- za sezonu 3-4 vrhy (prumerne 5,5 mladat na vrh)
+		- pri rozmnozovani se samci perou a hynou 
+			=> pomer pohlavi se tim v rozmn. obdobi meni
+			   na 5:1 samice:samec
+		- pri premnozeni samice vychovavaji mladata spolecne
+		  s tim ze nektere z nich uhynou
+		- pri extremnim premnozeni samice nemaji mladata
+		  vubec
+
+	- kolisani pocetnosti:
+		- prudke
+		- premnozeni dosahuje asi 3-4 let 
+			=> nekolik set az 2.5k jedince na hektar
+			=> sarvatky => klesani cukru, stres
+			   nemoci, malo jidla
+			=> premnozena populace pak prez zimu naraz
+			   cela vyhyne (zustanou jen jedinci mimo
+			   hlavni kolonie) - pri minimalnich stavech
+			   pripada az 2 - 5 hrabosu na hektar
+
+
+Ekologie savcu: Petr Vlasak
+===========================
+	- populacni dynamika:
+		p = n - m
+		
+		p = prirustek populace
+		n = natalita (mnozvivost)
+		m = mortalita (umrtnost)
+
+	- struktura populacniho cyklu hrabosovitych:
+		- zpracovano: Krebs a Myersova (1974)
+		- 4 faze: vzestupna f.			- progradace
+		          vrcholova f.			- gradace
+		          sestupna f.  			- retrogradace
+                          f. nizkeho pocetniho stavu 	- pesimum
+
+		- progradace:
+			- 2 - 3 roky (vzacne jeden rok -> hr.
+			  preriovy/kalifornsky)
+			- 3-6ti nasobny prirustek populace v pulrocnim obdobi
+
+		- gradace:
+			- 1 - 2 roky (vzacne)
+			- charakteristicky je pak vyrazny jarni pokles  \
+			  populace (az 50%) a i presto jejich populace   >- jen u nekterych druhu
+			  v temze roce dosahuji pocetiho maxima         /
+			 
+		- retrogradace:
+			- 3 formy
+			- forma H:
+				- pomaly pokles s castecnou regeneraci
+				- 1 - 2 roky
+			- forma G:
+				- pomaly pokles bez castecne regenerace
+			- forma M: 
+				- populacni zlom
+				- populace prudce klesa v prubehu zimy
+				  do castecneho jara
+				- nekolikrat zjisten u rodu mikrotus !!!
+		- pesimum:
+			- tydny, mesice, 1 - 3 roky, zalezi na druhu
+			- nektere populace osciluji => rod mikrotus !!!
+				=> Krebs 1966
+
+	- demgraficka charakteristika populacniho cyklu hrabosovitych
+		- mnozivost (natalita)
+			- velikost vrhu
+				- teoreticky!! jedna z pricin cyklickych zmen pocetnosti
+				- u Microtus 10 -20% snizeni v roce gradace
+				- u hrabose polniho 5.1% rozdil mezi pesimem a
+				  gradaci (mereno na ceskomoravske vrchovine)
+				=> nema velky vyznam
+			- pocet pohlavne dospelych samic
+				- nema velky vyznam
+			- delka rozmnozovaci sezony
+				- u Microtus to je prez zimu vzacna a navic
+				  jen 0.5 - 0.8 procenta
+			- stari / dosazeni pohlavni zralosti
+				- neprimo umerne populacni hustotote
+				   => dulezity faktor
+			- pomer pohlavi
+				- je tu povazanost => za gradace vyrazna prevaha samic
+			- shrnuti: vliv ma:
+				- delka rozmnozovaci sezony: 
+					vzestupna faze => hlouha delka
+					vrchol a sestup => zkracena
+				- dosazeni pohlavni dospelosti
+				- pomer pohlavi
+				   vliv nema:
+				- velikost vrhu, procento dospelych samic,
+				  ktere zabreznou v prubehu rozmnozovaci
+				  sezony
+		- uhyn (mortalita)
+			- tezke na zjistovani
+			- juvileove a subadulti
+				- nejnizsi je pocet prezitych mladat
+				  narozenych v prvni polovine rozmnozovaci
+				  sezony (dojeti sestupu i guess)
+				- nedelat moc velke zavere => malo informaci
+			- prenatalni obdobi
+				- neni fatorem
+		- rozptyl jedincu (disperze)
+			- populaci na plochu moc nevlivnuje jelikoz je
+			  vyrovnana priruatkem
+			- v izolaci je hrabos polni dosahnout az na 72500
+			  jinak kolem 1900
+			- muze slouzit jako: - pojistny ventil 
+				=> prebytek populace odmigruje
+					     - selektivni cinitel
+				=> podle hustoty osidleni definuje kvalitu
+				   prostoru
+			 66         - struktura populacniho cyklu hrabosovitych:
+- emigrace sili pri vzestupu
+		- hmotnost tela
+			- v gradaci samice rostou o 18% a samci o 39%
+			- vetsi hmotnost tela muze zpusobit: delsi zivot,
+			  rychlejsi rust populace
+
+	- Hypotezy vysvetlujici populacni cykly hrabosovitych
+		- potrava (vymirani hladovenim)
+			- hrabos je potravne selektivni (jasne preferuje
+			  urcity druh potravy)
+			- vliv spasani na vegetaci - hrabos polni spasa cca 1%
+			  louky
+			- kvalita potravy - not really
+		- predace 
+			- nepredpoklada se zastaveni narustani pocetnosti za
+			  vzetupne faze
+			- muze snizovat gradacni populace
+			- neni nezbytne nutna
+		- pocasi a synchronizace
+			- 
+			.
+			.
+			.
+
+		- souhrn:
+			- hypoteza socialniho stresu a geneticka hypoteza
+			  chittyho
+ 			- 3 nezodpovezene otazky:
+				- co umoznuje delsi rozmnozovaci cyklus?
+				- jaka je podstata mortality ve fazi
+				  populacniho procesu?
+				- rozdil severu a jihu?

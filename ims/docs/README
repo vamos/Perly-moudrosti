@@ -1,0 +1,47 @@
+The CA model of vole population
+===============================
+
+CA
+--
+
+- size = 60x60 cells == 1 Ha
+
+cell
+----
+
+- size = 2,7778 m^2 (= 10000m^2/3600)
+
+radius of neigbourhood
+----------------------
+
+- the distance in which is still possible for the voles to multiplicate
+
+- hrabos-info(13) => cca 850, sqrt(850) = 29, 29/sqrt(2,7777) = 16 cell
+								---------radius
+
+natality
+--------
+
+- 3 - 4 calf each seasson => 270/3.5 = 77, 77/25 = 3 => each 3 time steps one
+  calf
+
+mortality
+---------
+- overpopulation => 95% 
+
+- male fight => 40%
+
+- normal ... - unknown
+
+
+Time Step
+---------
+
+- cca 25 days == the time newly born voles needs to become adults
+              == the time of vole being with calf 
+
+TODO
+----
+	- add time cnt to CA for stats and for deterimiting the seassons
+	  for the natality and volecalipse()
+

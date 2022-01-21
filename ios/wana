@@ -1,0 +1,365 @@
+#!/bin/sh
+
+# weblog analyser 4 IOS 2019
+# author: xdvora2t
+
+export POSIXLY_CORRECT=yes;
+
+#set -x
+
+# get rid of long name args 
+# -ip         to -i
+# -uri        to -u
+# expressions to variable
+# files       to variable
+
+
+ARG_FLAG=0 # aux var 4 argument order check
+
+for arg in "$@"; do
+   #echo $arg
+   shift
+   case "$arg" in
+      "-ip")         set -- "$@" "-i"
+                     if [ ${ARG_FLAG} -gt 3 ]; then
+                        echo "ERR: bad arguments" >&2
+                        exit 1
+                     else
+                        ARG_FLAG=1
+                     fi;;
+      "-uri")        set -- "$@" "-u" 
+                     if [ ${ARG_FLAG} -gt 3 ]; then
+                        echo "ERR: bad arguments" >&2
+                        exit 1
+                     else
+                        ARG_FLAG=1
+                     fi;;
+      "-a")          set -- "$@" "-a"
+                     if [ ${ARG_FLAG} -gt 3 ]; then
+                        echo "ERR: bad arguments" >&2
+                        exit 1
+                     else
+                        ARG_FLAG=1
+                     fi;;
+      "-b")          set -- "$@" "-b"
+                     if [ ${ARG_FLAG} -gt 3 ]; then
+                        echo "ERR: bad arguments" >&2
+                        exit 1
+                     else
+                        ARG_FLAG=1
+                     fi;;
+      "list-ip")     if [ -z ${EXPRESSION} ] && [ ${ARG_FLAG} -lt 3 ]; then
+                        EXPRESSION=${EXPRESSION:=$arg}
+                        ARG_FLAG=4
+                     else
+                        echo "ERR: bad arguments" >&2
+                        exit 1
+                     fi;;
+      "list-hosts")  if [ -z ${EXPRESSION} ] && [ ${ARG_FLAG} -lt 3 ]; then
+                        EXPRESSION=${EXPRESSION:=$arg}
+                        ARG_FLAG=4
+                     else
+                        echo "ERR: bad arguments" >&2
+                        exit 1
+                     fi;;
+      "list-uri")    if [ -z ${EXPRESSION} ] && [ ${ARG_FLAG} -lt 3 ]; then
+                        EXPRESSION=${EXPRESSION:=$arg}
+                        ARG_FLAG=4
+                     else
+                        echo "ERR: bad arguments" >&2
+                        exit 1
+                     fi;;
+      "hist-ip")     if [ -z ${EXPRESSION} ] && [ ${ARG_FLAG} -lt 3 ]; then
+                        EXPRESSION=${EXPRESSION:=$arg}
+                        ARG_FLAG=4
+                     else
+                        echo "ERR: bad arguments" >&2
+                        exit 1
+                     fi;;
+      "hist-load")   if [ -z ${EXPRESSION} ] && [ ${ARG_FLAG} -lt 3 ]; then
+                        EXPRESSION=${EXPRESSION:=$arg}
+                        ARG_FLAG=4
+                     else
+                        echo "ERR: bad arguments" >&2
+                        exit 1
+                     fi;;
+      *)             if [ ${ARG_FLAG} -ne 1 ]; then
+                        OTHERS="${OTHERS} $arg"
+                        ARG_FLAG=4
+                     else 
+                        ARG_FLAG=2
+                        set -- "$@" "$arg"
+                     fi;;   #possible files
+      #*.gz)          GFILES+=($arg);;
+      #*)             set -- "$@" "$arg";;
+   esac
+done
+
+#echo "arguments $@"
+#echo $EXPRESSION
+#echo ${OTHERS}
+#parse args
+while getopts "a:b:i:u:" option
+do
+   case ${option} in
+      a) if [ -z ${AFTER} ]; then
+         AFTER=${AFTER:=$OPTARG}
+         else
+            echo "ERR: same filter twice" >&2
+            exit 1
+         fi;;
+      b) if [ -z ${BEFORE} ]; then
+         BEFORE=${BEFORE:=$OPTARG}
+         else
+            echo "ERR: same filter twice" >&2
+            exit 1
+         fi;;
+      i) if [ -z ${IP} ]; then
+         IP=${IP:=$OPTARG}
+         else
+            echo "ERR: same filter twice" >&2
+            exit 1
+         fi;;
+      u) if [ -z ${URI} ]; then
+         URI=${URI:=$OPTARG}
+         else
+            echo "ERR: same filter twice" >&2
+            exit 1
+         fi;;
+      ?) exit 1;;
+      *);;
+   esac
+done
+if [ "$#" -gt 0 ]; then
+   shift 
+fi
+#echo next
+#echo ${OTHERS}
+#if no files given take stdin
+if [ -z "${OTHERS}" ]; then 
+
+   #echo "zadne soubory"
+   
+   while read LINE
+   do # no files, read stdin
+      [ -z "$LINE" ] && break
+      tmp=`echo $LINE`
+      INPUT="${INPUT}$tmp"
+      INPUT="${INPUT}
+"
+   done
+fi
+
+#check if provided files exists
+IFS=' '                                   # IFS set !!!!!!!!
+for alpha in `echo $OTHERS`; do
+
+   if [ -r "$alpha" ]; then
+      #echo "$alpha"
+      #echo "existuje" 
+      case "$alpha" in
+      #*.gz) GFILES+=($alpha);;
+      *)    INPUT="${INPUT}$alpha ";;
+      esac
+   else
+      echo "ERR: file ($alpha) does not exists" >&2
+      exit 2
+   fi
+
+done
+
+pick_action()
+{  # aux function determining used commands 
+   # catenate log and *.gz or stdin
+
+   if [ -d "$1" ]; then
+     #echo "adresar: $1"
+      return 
+   elif [ -r "$1" ]; then
+
+      #echo "soubor: $1"
+      # is file
+      if echo $1 | grep -qE "^.*.gz$" ;then
+         tmp=`gunzip -c $1`
+         text="${text}
+$tmp"
+         text="${text}
+"
+      elif echo "$1" | grep -qE "^.*$" ;then
+         tmp=`cat $1`
+         #echo "$(cat $1)"`
+         #echo "tmp $tmp"
+         text="${text}
+$tmp"
+         text="${text}
+"
+      fi
+   
+   # not file, but STDIN
+   else
+      tmp=`echo $1`
+      text="${text}$tmp"
+      text="${text}
+"
+   fi
+}
+
+#echo "$IP"
+#echo "$AFTER"
+#echo "$BEFORE"
+#echo "$PBD"
+
+#histogram aux variable 617x
+number_sign="##################################################\
+###############################################################\
+###############################################################\
+###############################################################\
+###############################################################\
+###############################################################\
+###############################################################\
+###############################################################\
+###############################################################\
+###############################################################"
+
+check_input_ip()
+{
+   if echo "$1" | grep -qE  "^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$" ; then
+
+      return
+   elif echo "$1" | grep -qE "^([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4}$"; then
+   return
+  else
+
+   echo "ERR: ip address not valid ($1)" >&2
+   exit 1
+       
+   fi 
+}
+
+check_input_date()
+{
+   if echo "$1" | grep -qE "^[0-9][0-9][0-9][0-9]\-[0-9][0-9]\-[0-9][0-9]\ [0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]$"; then
+      return
+   else
+      echo "ERR: wrong input date format ($1)" >&2
+      exit 1
+   fi
+}
+
+#analyze
+for line in ${INPUT}; do
+   eval 'pick_action "$line"'
+
+#echo "$text"
+
+
+   #for text_line in ${text}; do
+   text=$(printf  '%s ' "$text" | sed -e 's/\\n/\\m/')
+
+   if [ ! -z "$AFTER" ]; then # if AFTER field not empty
+      eval 'check_input_date "$AFTER"'
+   
+      bign_after=$(echo "$AFTER" | awk -F' ' '{printf "[%s:%s", $1, $2}' | awk -F'-' '{printf "%s[[%s[%s", $1, $2, $3} ')
+      
+      #transform 4th column to bign [[ marks month for transformation back
+      text=$(echo "$text" | sed 's%\([0-9][0-9]\)/\([A-Z][a-z][a-z]\)/\([0-9][0-9][0-9][0-9]\)%\3[[\2[\1%' | sed -e 's/Jan/01/' -e 's/Feb/02/' -e 's/Mar/03/' -e 's/Apr/04/' -e 's/May/05/' -e 's/Jun/06/' -e 's/Jul/07/' -e 's/Aug/08/' -e 's/Sep/09/' -e 's/Oct/10/' -e 's/Nov/11/' -e 's/Dec/12/' | awk -v outside_bign="$bign_after" '$4 > outside_bign { print}')
+
+      #transform back
+      text=$(echo "$text" | sed -e 's/\[\[01/Jan/' -e 's/\[\[02/Feb/'  -e 's/\[\[02/Feb/' -e 's/\[\[03/Mar/' -e 's/\[\[04/Apr/' -e 's/\[\[05/May/' -e 's/\[\[06/Jun/' -e 's/\[\[07/Jul/' -e 's/\[\[08/Aug/' -e 's/\[\[10/Oct/' -e 's/\[\[11/Nov/' -e 's/\[\[12/Dec/' | sed 's%\(\[\)\([0-9][0-9][0-9][0-9]\)\([A-Z][a-z][a-z]\)\(\[\)\([0-9][0-9]\)%\1\5/\3/\2%')
+
+   fi
+
+   if [ ! -z "$BEFORE" ]; then # if BEFORE field not empty
+
+      eval 'check_input_date "$BEFORE"'
+      bign_before=$(echo "$BEFORE" | awk -F' ' '{printf "[%s:%s", $1, $2}' | awk -F'-' '{printf "%s[[%s[%s", $1, $2, $3} ')
+
+      #transform 4th column to bign [[ marks month for transformation back
+      text=$(echo "$text" | sed 's%\([0-9][0-9]\)/\([A-Z][a-z][a-z]\)/\([0-9][0-9][0-9][0-9]\)%\3[[\2[\1%' | sed -e 's/Jan/01/' -e 's/Feb/02/' -e 's/Mar/03/' -e 's/Apr/04/' -e 's/May/05/' -e 's/Jun/06/' -e 's/Jul/07/' -e 's/Aug/08/' -e 's/Sep/09/' -e 's/Oct/10/' -e 's/Nov/11/' -e 's/Dec/12/' | awk -v outside_bign="$bign_before" '$4 < outside_bign { print}')
+
+      #transform back
+      text=$(echo "$text" | sed -e 's/\[\[01/Jan/' -e 's/\[\[02/Feb/'  -e 's/\[\[02/Feb/' -e 's/\[\[03/Mar/' -e 's/\[\[04/Apr/' -e 's/\[\[05/May/' -e 's/\[\[06/Jun/' -e 's/\[\[07/Jul/' -e 's/\[\[08/Aug/' -e 's/\[\[10/Oct/' -e 's/\[\[11/Nov/' -e 's/\[\[12/Dec/' | sed 's%\(\[\)\([0-9][0-9][0-9][0-9]\)\([A-Z][a-z][a-z]\)\(\[\)\([0-9][0-9]\)%\1\5/\3/\2%')
+
+   fi
+
+   if [ ! -z "$IP" ]; then # if IP field not empty
+
+      eval 'check_input_ip "$IP"'
+      text=$(echo "$text" | awk -v awkip="$IP" '$1 == awkip { print }' 2>/dev/null )
+
+   fi
+
+   if [ ! -z "$URI" ]; then # if URI field not empty
+
+      text=$(echo "$text" | awk -v awkuri="$URI" '$7 == awkuri { print }' 2>/dev/null )
+   fi
+
+done
+
+#output
+if [ ! -z "$EXPRESSION" ]; then
+   case ${EXPRESSION} in
+
+      "list-ip") text=$(echo "$text" | cut -d' ' -f1 | sort | grep -v -e '^[[:space:]]*$' | sort | uniq )
+                 echo "$text";;
+
+      "list-hosts") 
+         tmp_text=$( echo "$text" | awk -F' ' '{ printf "%s ", $1}' )
+         for line in `echo $tmp_text`; do
+
+
+               tmp=$(echo "$line" | xargs -L 1 host )
+               #echo "line: $line"
+               #echo "tmp: $tmp"
+               if echo "$tmp" | grep -qE "^.*[(].*" ; then
+                  tmp_ip=$(echo "$line")
+               else
+                  line=$( echo "$line" | xargs -L 1 host | cut -d' ' -f5) 
+                  tmp_ip=$(echo "$line")
+               fi
+
+               ip_text="${ip_text}$tmp_ip"
+               ip_text="${ip_text}
+"
+         
+         done
+               ip_text=$( echo "$ip_text" | sort | uniq | grep -v -e '^[[:space:]]*$')
+               echo "$ip_text"
+               exit 0;;
+
+
+      "list-uri") text=$(echo "$text" | cut -d' ' -f7 | sort | uniq | grep -e '^\/') 
+                  echo "$text";;
+
+
+      "hist-ip") text=$(echo "$text" | awk '{print $1}' | grep -v -e '^[[:space:]]*$' | sort | uniq -c | sort -k 1 -r -n |\
+                 awk -v nr_sgn="${number_sign}" -F' ' '{printf "%s (%s): %.*s\n", $2, $1, $1, nr_sgn }' )
+                 #sort -k 2 -r -n )
+                 echo $text;;
+
+
+      "hist-load") #text=$(echo "$text" | cut -d' ' -f7)
+      #transform 4th column to bign [[ marks month for transformation back
+      text=$(echo "$text" | awk '{print $4}'  | sed 's%\(\[\)\([0-9][0-9]\)/\([A-Z][a-z][a-z]\)/\([0-9][0-9][0-9][0-9]\):\([0-9][0-9]\)%\4-\3-\2 \5%' | sed -e 's/Jan/01/' -e 's/Feb/02/' -e 's/Mar/03/' -e 's/Apr/04/' -e 's/May/05/' -e 's/Jun/06/' -e 's/Jul/07/' -e 's/Aug/08/' -e 's/Sep/09/' -e 's/Oct/10/' -e 's/Nov/11/' -e 's/Dec/12/'  | awk -F':' '{printf "%s:00\n", $1}' | grep -v -e '^:00$'  | sort | uniq -c | awk -v nr_sgn="${number_sign}" -F' ' '{printf "%s %s (%s): %.*s\n", $2, $3, $1, $1, nr_sgn }')
+      echo $text;;
+
+
+   esac
+
+else 
+
+   text=$(printf  '%s' "$text" | sed -e 's/\\m/\\n/')
+   text="${text}
+"
+IFS='
+'
+   for line in ${text}; do
+      printf '%s\n' $line 
+   done
+
+   exit 0
+fi 
+
+
+
+

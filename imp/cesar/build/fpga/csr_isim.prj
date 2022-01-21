@@ -1,0 +1,3 @@
+vhdl work "csr_config.vhd"
+vhdl work "../../fpga/sim/._tb.vhd"
+vhdl work "../../fpga/sim/tb.vhd"

@@ -1,0 +1,6 @@
+set TESTBENCH_SCRIPT "../../fpga/sim/isim.tcl"
+set SIM_ENVIRONMENT "isim"
+set ISIM_PRJ "csr_isim.prj"
+set ISIM_SIMULATOR "csr_isim"
+set ISIM_SCRIPT "csr_isim.tcl"
+source "../../../../../base/xilinxisim.tcl"

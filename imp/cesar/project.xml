@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project outputprefix="csr">
+
+    <!--  Project description -->
+    <name>Sifrovaci stroj</name>
+    <author>Libor Dvoracek</author>
+    <authoremail>xdvora2t@stud.fit.vutbr.cz</authoremail>
+    <revision>1</revision>
+    <description>Cesarova sifra. 
+    </description>
+ 
+    <!-- 
+        <file>utils.c</file>
+	 MCU part -->
+    <mcu>
+        <include>mcu/libs/lcd/package.xml</include>
+        <include>mcu/libs/keyboard/package.xml</include>
+        <file>main.c</file>
+    </mcu>
+
+    <!-- FPGA part -->
+    <fpga use="apps/demo_msp/free_rtos/project.xml" />
+
+</project>

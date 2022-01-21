@@ -1,0 +1,13 @@
+Readme pro projekt kurzu ISA 2019
+WHOIS TAZATEL
+xdvora2t@stud.fit.vutbr.cz
+
+Omezeni implementace
+--------------------
+
+Rozsireni implementace
+----------------------
+program je mozne spustit s argumentem -d <ip dns serveru>
+ktery specifikuje dotazovany DNS server na misto zaznamu 
+uvedeneho v /etc/resolv.conf
+

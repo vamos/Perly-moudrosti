@@ -1,0 +1,5 @@
+variable VHDLFILES
+set SIMMODEL "../../build/fpga/test.timesim.vhd"
+
+
+source "../../../../../base/modelsim.fdo"

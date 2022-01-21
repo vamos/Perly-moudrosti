@@ -1,0 +1,11 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+architecture main of tlv_gp_ifc is
+
+begin
+
+end main;
+

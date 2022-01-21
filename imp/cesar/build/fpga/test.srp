@@ -1,0 +1,559 @@
+Release 13.1 - xst O.40d (nt)
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to build/fpga
+Parameter xsthdpdir set to build/fpga
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.04 secs
+ 
+--> 
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "build/fpga/test.prj"
+Input Format                       : mixed
+
+---- Target Parameters
+Output File Name                   : "build/fpga/test.ngc"
+Output Format                      : NGC
+Target Device                      : xc3s50-4-pq208
+
+---- Source Options
+Top Module Name                    : fpga
+
+---- General Options
+Optimization Goal                  : SPEED
+Optimization Effort                : 1
+Library Search Order               : build/fpga/test.lso
+RTL Output                         : yes
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "C:/fitkitSVN/fpga/units/clkgen/clkgen_config.vhd" in Library work.
+Package <clkgen_cfg> compiled.
+Package body <clkgen_cfg> compiled.
+Compiling vhdl file "C:/fitkitSVN/fpga/ctrls/spi/spi_adc_entity.vhd" in Library work.
+Entity <SPI_adc> compiled.
+Compiling vhdl file "C:/fitkitSVN/fpga/units/math/math_pack.vhd" in Library work.
+Package <math_pack> compiled.
+Package body <math_pack> compiled.
+Compiling vhdl file "C:/fitkitSVN/fpga/chips/fpga_xc3s50.vhd" in Library work.
+Entity <fpga> compiled.
+Compiling vhdl file "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd" in Library work.
+Entity <clkgen> compiled.
+Entity <clkgen> (Architecture <BEHAVIORAL>) compiled.
+Compiling vhdl file "C:/fitkitSVN/fpga/ctrls/spi/spi_ctrl.vhd" in Library work.
+Entity <SPI_ctrl> compiled.
+Entity <SPI_ctrl> (Architecture <Arch_SPI_ctrl2>) compiled.
+Compiling vhdl file "C:/fitkitSVN/fpga/chips/architecture_gp/tlv_gp_ifc.vhd" in Library work.
+Entity <tlv_gp_ifc> compiled.
+Compiling vhdl file "C:/fitkitSVN/apps/demo_msp/cesar/build/fpga/test_config.vhd" in Library work.
+Package <fpga_cfg> compiled.
+Package body <fpga_cfg> compiled.
+Compiling vhdl file "C:/fitkitSVN/apps/demo_msp/cesar/fpga/top.vhd" in Library work.
+Entity <tlv_gp_ifc> (Architecture <main>) compiled.
+Compiling vhdl file "C:/fitkitSVN/fpga/chips/architecture_gp/arch_gp_ifc.vhd" in Library work.
+Entity <fpga> (Architecture <arch_gp_ifc>) compiled.
+Compiling vhdl file "C:/fitkitSVN/fpga/ctrls/spi/spi_reg.vhd" in Library work.
+Package <spi_cfg> compiled.
+Entity <SPI_reg> compiled.
+Entity <SPI_reg> (Architecture <beh>) compiled.
+Compiling vhdl file "C:/fitkitSVN/fpga/ctrls/spi/spi_adc_autoincr.vhd" in Library work.
+Entity <SPI_adc> (Architecture <autoincrement>) compiled.
+Compiling vhdl file "C:/fitkitSVN/fpga/ctrls/spi/spi_adc.vhd" in Library work.
+Entity <SPI_adc> (Architecture <basic>) compiled.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <fpga> in library <work> (architecture <arch_gp_ifc>).
+
+Analyzing hierarchy for entity <clkgen> in library <work> (architecture <BEHAVIORAL>) with generics.
+	FREQ = "dcm_20mhz"
+	GENIBUF = true
+
+Analyzing hierarchy for entity <SPI_ctrl> in library <work> (architecture <Arch_SPI_ctrl2>).
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <fpga> in library <work> (Architecture <arch_gp_ifc>).
+WARNING:Xst:2211 - "C:/fitkitSVN/fpga/chips/architecture_gp/arch_gp_ifc.vhd" line 192: Instantiating black box module <tlv_gp_ifc>.
+Entity <fpga> analyzed. Unit <fpga> generated.
+
+Analyzing generic Entity <clkgen> in library <work> (Architecture <BEHAVIORAL>).
+	FREQ = "dcm_20mhz"
+	GENIBUF = true
+WARNING:Xst:2211 - "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd" line 96: Instantiating black box module <BUFG>.
+WARNING:Xst:2211 - "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd" line 106: Instantiating black box module <IBUFG>.
+WARNING:Xst:753 - "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd" line 114: Unconnected output port 'CLK0' of component 'DCM'.
+WARNING:Xst:753 - "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd" line 114: Unconnected output port 'CLK90' of component 'DCM'.
+WARNING:Xst:753 - "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd" line 114: Unconnected output port 'CLK180' of component 'DCM'.
+WARNING:Xst:753 - "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd" line 114: Unconnected output port 'CLK270' of component 'DCM'.
+WARNING:Xst:753 - "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd" line 114: Unconnected output port 'CLKDV' of component 'DCM'.
+WARNING:Xst:753 - "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd" line 114: Unconnected output port 'CLK2X' of component 'DCM'.
+WARNING:Xst:753 - "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd" line 114: Unconnected output port 'CLK2X180' of component 'DCM'.
+WARNING:Xst:753 - "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd" line 114: Unconnected output port 'CLKFX180' of component 'DCM'.
+WARNING:Xst:753 - "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd" line 114: Unconnected output port 'STATUS' of component 'DCM'.
+WARNING:Xst:753 - "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd" line 114: Unconnected output port 'PSDONE' of component 'DCM'.
+WARNING:Xst:2211 - "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd" line 114: Instantiating black box module <DCM>.
+    Set user-defined property "CLKDV_DIVIDE =  2.0000000000000000" for instance <DCM_INST> in unit <clkgen>.
+    Set user-defined property "CLKFX_DIVIDE =  10" for instance <DCM_INST> in unit <clkgen>.
+    Set user-defined property "CLKFX_MULTIPLY =  27" for instance <DCM_INST> in unit <clkgen>.
+    Set user-defined property "CLKIN_DIVIDE_BY_2 =  FALSE" for instance <DCM_INST> in unit <clkgen>.
+    Set user-defined property "CLKIN_PERIOD =  135.6339999999999900" for instance <DCM_INST> in unit <clkgen>.
+    Set user-defined property "CLKOUT_PHASE_SHIFT =  NONE" for instance <DCM_INST> in unit <clkgen>.
+    Set user-defined property "CLK_FEEDBACK =  NONE" for instance <DCM_INST> in unit <clkgen>.
+    Set user-defined property "DESKEW_ADJUST =  SYSTEM_SYNCHRONOUS" for instance <DCM_INST> in unit <clkgen>.
+    Set user-defined property "DFS_FREQUENCY_MODE =  LOW" for instance <DCM_INST> in unit <clkgen>.
+    Set user-defined property "DLL_FREQUENCY_MODE =  LOW" for instance <DCM_INST> in unit <clkgen>.
+    Set user-defined property "DSS_MODE =  NONE" for instance <DCM_INST> in unit <clkgen>.
+    Set user-defined property "DUTY_CYCLE_CORRECTION =  TRUE" for instance <DCM_INST> in unit <clkgen>.
+    Set user-defined property "FACTORY_JF =  C080" for instance <DCM_INST> in unit <clkgen>.
+    Set user-defined property "PHASE_SHIFT =  0" for instance <DCM_INST> in unit <clkgen>.
+    Set user-defined property "STARTUP_WAIT =  FALSE" for instance <DCM_INST> in unit <clkgen>.
+Entity <clkgen> analyzed. Unit <clkgen> generated.
+
+Analyzing Entity <SPI_ctrl> in library <work> (Architecture <Arch_SPI_ctrl2>).
+Entity <SPI_ctrl> analyzed. Unit <SPI_ctrl> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <SPI_ctrl>.
+    Related source file is "C:/fitkitSVN/fpga/ctrls/spi/spi_ctrl.vhd".
+    Found finite state machine <FSM_0> for signal <pstate>.
+    -----------------------------------------------------------------------
+    | States             | 6                                              |
+    | Transitions        | 10                                             |
+    | Inputs             | 1                                              |
+    | Outputs            | 1                                              |
+    | Clock              | CLK                       (rising_edge)        |
+    | Clock enable       | dovld                     (positive)           |
+    | Reset              | SPI_CS                    (positive)           |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | sinit                                          |
+    | Power Up State     | sinit                                          |
+    | Encoding           | automatic                                      |
+    | Implementation     | automatic                                      |
+    -----------------------------------------------------------------------
+    Found 1-bit tristate buffer for signal <SPI_MISO>.
+    Found 1-bit register for signal <spi_clk_1>.
+    Found 1-bit register for signal <spi_clk_2>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   2 D-type flip-flop(s).
+	inferred   1 Tristate(s).
+Unit <SPI_ctrl> synthesized.
+
+
+Synthesizing Unit <clkgen>.
+    Related source file is "C:/fitkitSVN/fpga/units/clkgen/clkgen.vhd".
+WARNING:Xst:1780 - Signal <CLK1X_BUF> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+Unit <clkgen> synthesized.
+
+
+Synthesizing Unit <fpga>.
+    Related source file is "C:/fitkitSVN/fpga/chips/architecture_gp/arch_gp_ifc.vhd".
+WARNING:Xst:647 - Input <SPI_CS> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1780 - Signal <ispi_rst> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+Unit <fpga> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Registers                                            : 2
+ 1-bit register                                        : 2
+# Tristates                                            : 1
+ 1-bit tristate buffer                                 : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <spictrl/pstate/FSM> on signal <pstate[1:6]> with one-hot encoding.
+----------------------
+ State    | Encoding
+----------------------
+ sinit    | 000001
+ srcv1    | 000010
+ srcv2    | 001000
+ srcv3    | 010000
+ sactive  | 100000
+ snactive | 000100
+----------------------
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 1
+# Registers                                            : 2
+ Flip-Flops                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <fpga> ...
+
+Mapping all equations...
+WARNING:Xst:2036 - Inserting OBUF on port <X<30>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<25>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<31>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<26>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<32>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<27>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<28>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<33>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<34>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<29>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<35>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<40>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<41>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<36>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<42>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<37>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<43>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<38>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<44>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<39>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<45>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<0>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<1>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<2>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<3>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<5>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<6>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<7>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<8>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<9>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<10>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<11>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<12>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<13>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<14>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<20>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<15>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<16>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<21>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<22>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<17>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<23>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<18>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<24>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <X<19>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <AFBUS<11>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <AFBUS<10>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <AFBUS<9>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <AFBUS<8>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <AFBUS<7>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <AFBUS<6>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <AFBUS<5>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <AFBUS<4>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <AFBUS<3>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <AFBUS<2>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <AFBUS<1>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <AFBUS<0>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <P3M<7>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <P3M<6>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <P3M<5>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <P3M<4>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <P3M<3>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <P3M<2>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <P3M<1>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <P3M<0>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <LD<7>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <LD<6>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <LD<5>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <LD<4>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <LD<3>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <LD<2>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <LD<1>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <LD<0>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RD<7>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RD<6>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RD<5>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RD<4>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RD<3>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RD<2>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RD<1>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RD<0>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RCKE> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RCLK> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RWE> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <LEDF> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <LE> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <LRS> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RDQM> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <LRW> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RCS> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RRAS> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RCAS> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <KIN<3>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <KIN<2>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <KIN<1>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <KIN<0>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<14>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<13>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<12>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<11>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<10>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<9>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<8>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<7>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<6>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<5>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<4>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<3>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<2>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<1>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+WARNING:Xst:2036 - Inserting OBUF on port <RA<0>> driven by black box <tlv_gp_ifc>. Possible simulation mismatch.
+Building and optimizing final netlist ...
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 7
+ Flip-Flops                                            : 7
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : build\fpga\test.ngr
+Top Level Output File Name         : build/fpga/test.ngc
+Output Format                      : NGC
+Optimization Goal                  : SPEED
+Keep Hierarchy                     : no
+
+Design Statistics
+# IOs                              : 124
+
+Cell Usage :
+# BELS                             : 10
+#      GND                         : 1
+#      INV                         : 1
+#      LUT2                        : 7
+#      LUT3                        : 1
+# FlipFlops/Latches                : 7
+#      FDCE                        : 4
+#      FDP                         : 2
+#      FDPE                        : 1
+# Clock Buffers                    : 1
+#      BUFG                        : 1
+# IO Buffers                       : 123
+#      IBUF                        : 10
+#      IBUFG                       : 1
+#      OBUF                        : 111
+#      OBUFT                       : 1
+# DCMs                             : 1
+#      DCM                         : 1
+# Others                           : 1
+#      tlv_gp_ifc                  : 1
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s50pq208-4 
+
+ Number of Slices:                        5  out of    768     0%  
+ Number of Slice Flip Flops:              7  out of   1536     0%  
+ Number of 4 input LUTs:                  9  out of   1536     0%  
+ Number of IOs:                         124
+ Number of bonded IOBs:                 123  out of    124    99%  
+ Number of GCLKs:                         1  out of      8    12%  
+ Number of DCMs:                          1  out of      2    50%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+-------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)   | Load  |
+-----------------------------------+-------------------------+-------+
+SMCLK                              | DCMclkgen/DCM_INST:CLKFX| 7     |
+-----------------------------------+-------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+-----------------------------------+------------------------+-------+
+Control Signal                     | Buffer(FF name)        | Load  |
+-----------------------------------+------------------------+-------+
+SPI_FPGA_CS                        | IBUF                   | 5     |
+reset(reset1:O)                    | NONE(spictrl/spi_clk_1)| 2     |
+-----------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 10.827ns (Maximum Frequency: 92.362MHz)
+   Minimum input arrival time before clock: 2.831ns
+   Maximum output required time after clock: 8.866ns
+   Maximum combinational path delay: 6.521ns
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'SMCLK'
+  Clock period: 10.827ns (frequency: 92.362MHz)
+  Total number of paths / destination ports: 16 / 10
+-------------------------------------------------------------------------
+Delay:               4.010ns (Levels of Logic = 1)
+  Source:            spictrl/spi_clk_2 (FF)
+  Destination:       spictrl/pstate_FSM_FFd6 (FF)
+  Source Clock:      SMCLK rising 2.7X
+  Destination Clock: SMCLK rising 2.7X
+
+  Data Path: spictrl/spi_clk_2 to spictrl/pstate_FSM_FFd6
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDP:C->Q              2   0.720   1.216  spictrl/spi_clk_2 (spictrl/spi_clk_2)
+     LUT2:I0->O            5   0.551   0.921  spictrl/dovld1 (ispi_do_vld)
+     FDCE:CE                   0.602          spictrl/pstate_FSM_FFd3
+    ----------------------------------------
+    Total                      4.010ns (1.873ns logic, 2.137ns route)
+                                       (46.7% logic, 53.3% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'SMCLK'
+  Total number of paths / destination ports: 5 / 5
+-------------------------------------------------------------------------
+Offset:              2.831ns (Levels of Logic = 2)
+  Source:            SPI_DO (PAD)
+  Destination:       spictrl/pstate_FSM_FFd5 (FF)
+  Destination Clock: SMCLK rising 2.7X
+
+  Data Path: SPI_DO to spictrl/pstate_FSM_FFd5
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             4   0.821   1.256  SPI_DO_IBUF (SPI_DO_IBUF)
+     LUT2:I0->O            1   0.551   0.000  spictrl/pstate_FSM_FFd5-In1 (spictrl/pstate_FSM_FFd5-In)
+     FDCE:D                    0.203          spictrl/pstate_FSM_FFd5
+    ----------------------------------------
+    Total                      2.831ns (1.575ns logic, 1.256ns route)
+                                       (55.6% logic, 44.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'SMCLK'
+  Total number of paths / destination ports: 6 / 4
+-------------------------------------------------------------------------
+Offset:              8.866ns (Levels of Logic = 2)
+  Source:            spictrl/pstate_FSM_FFd1 (FF)
+  Destination:       SPI_DI (PAD)
+  Source Clock:      SMCLK rising 2.7X
+
+  Data Path: spictrl/pstate_FSM_FFd1 to SPI_DI
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCE:C->Q             3   0.720   0.907  spictrl/pstate_FSM_FFd1 (spictrl/pstate_FSM_FFd1)
+     INV:I->O              1   0.551   0.801  spictrl/devsel_inv1_INV_0 (spictrl/devsel_inv)
+     OBUFT:T->O                5.887          SPI_DI_OBUFT (SPI_DI)
+    ----------------------------------------
+    Total                      8.866ns (7.158ns logic, 1.708ns route)
+                                       (80.7% logic, 19.3% route)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 123 / 123
+-------------------------------------------------------------------------
+Delay:               6.521ns (Levels of Logic = 1)
+  Source:            fpga_inst:P3M<0> (PAD)
+  Destination:       P3M<0> (PAD)
+
+  Data Path: fpga_inst:P3M<0> to P3M<0>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    tlv_gp_ifc:P3M<0>      2   0.000   0.877  fpga_inst (P3M_0_OBUF)
+     OBUF:I->O                 5.644          P3M_0_OBUF (P3M<0>)
+    ----------------------------------------
+    Total                      6.521ns (5.644ns logic, 0.877ns route)
+                                       (86.6% logic, 13.4% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 2.00 secs
+Total CPU time to Xst completion: 2.13 secs
+ 
+--> 
+
+Total memory usage is 141124 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  128 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+
