@@ -9,7 +9,7 @@
 | IMS         | Hrabošová krize     | 17/20       |
 | INC         | Přístupový terminál | 18/20       |
 | IOS         | Weblog analyzátor   | 15/15       |
-| IOS2        | River Crossing      | 11/15       |
+| IOS2        | River Crossing Prob.| 11/15       |
 | IPP         | Analyzátor kódu     | 7/7         |
 | ISA         | Whois tazatel       | 20/20       |
 | ISS         | Analýza signálu     | 12/12       |
