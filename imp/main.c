@@ -19,7 +19,7 @@ int char_cnt;                    // max 32 chars
 volatile char str[32] = "";      // string for storing input from keypad
 int index = 0;                   // index in str;
 
-int btn_cnt_2 = 0;               // button count 
+int btn_cnt_2 = 0;               // button count
 int btn_cnt_3 = 0;
 int btn_cnt_4 = 0;
 int btn_cnt_5 = 0;
@@ -29,13 +29,12 @@ int btn_cnt_8 = 0;
 int btn_cnt_9 = 0;
 int btn_cnt_0 = 0;
 
-int shift = 0;                
+int shift = 0;
 
 
 int code(char *input, int shift_in) {
 
    LCD_clear();
-   //LCD_append_string(input);
    int i;
    char tmp_ch;
    for ( i = 0; input[i] != '\0'; ++i ) {
@@ -45,35 +44,30 @@ int code(char *input, int shift_in) {
          tmp_ch = tmp_ch + shift;
          if (tmp_ch > 'Z' ) {
             int nr_of_abcs = shift / 26;
-            //tmp_ch = tmp_ch - 'Z' + 'A' - 1;
             tmp_ch = tmp_ch - (26*nr_of_abcs);
          }
          input[i]=tmp_ch;
       }
    }
-   //LCD_append_char('L');
    LCD_append_string(input);
-   return 0;     
+   return 0;
 }
 
 
 int keyboard_idle() {
-     
+
     ch = key_decode(read_word_keyboard_4x4());
     if (ch != last_ch) {
       last_ch = ch;
 
       if (ch == 'C' ) { // code
          code(str, shift);
-         //str[0] = '\0';
          term_send_str_crlf(str);
-      } 
+      }
       else if (ch ==  '*') { // restart
          fpga_initialized();
-         
+
          strcpy(str, "");
-         //str[32] = "";
-         //str[0] = '\0';
          term_send_str_crlf(str);
       }
       else if (ch ==  '#') { // help
@@ -89,25 +83,13 @@ int keyboard_idle() {
          term_send_str_crlf("btn_cnt_3++");
       }
       else if (ch ==  'A') {
-         shift++;     
+         shift++;
          term_send_str_crlf("shift++");
       }
       else if (ch ==  'B') {
-         shift--;     
+         shift--;
          term_send_str_crlf("shift--");
       }
-      //else if (ch != 0) {
-      //   if (char_cnt > 31 ) {
-
-      //      code(str, shift);
-      //      //str[0] = '\0';
-      //      char_cnt = 0;
-
-      //   }     
-      //   //strncat(str, &ch, 1);   // append to string
-      //   //LCD_append_char(ch);
-      //   //char_cnt++;
-      //}
     }
     return 0;
 }
@@ -132,9 +114,6 @@ unsigned char decode_user_cmd(char *cmd_ucase, char *cmd)
 *******************************************************************************/
 void fpga_initialized() {
     LCD_init();
-    //LCD_append_string("C - code        ");
-    //LCD_append_string("D - decode      ");
-    //LCD_send_cmd(LCD_DISPLAY_ON_OFF | LCD_DISPLAY_ON | LCD_CURSOR_OFF, 0);
 }
 
 /*******************************************************************************
@@ -156,7 +135,7 @@ int main(void)
 
    last_ch = 0;
    char_cnt = 0;
-   
+
    while (1) {
       keyboard_idle();	// obsluha klavesnice
       terminal_idle();  // obsluha terminalu
@@ -165,7 +144,7 @@ int main(void)
 }
 
 /*******************************************************************************
- * Obsluha preruseni 
+ * Obsluha preruseni
 *******************************************************************************/
 interrupt (TIMERB0_VECTOR) Timer_B (void) {
 
