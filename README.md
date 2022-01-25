@@ -13,4 +13,4 @@
 | IPP         | Analyzátor kódu     | 7/7         |
 | ISA         | Whois tazatel       | 20/20       |
 | ISS         | Analýza signálu     | 12/12       |
-| IZV         | Analýza dat         | 34/40       |
+| IZV         | Analýza dat         | 40/46       |
